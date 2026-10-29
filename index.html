@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập 30 - Website Album Hình Ảnh Nâng Cao</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .header-box {
+            background: linear-gradient(135deg, #1b365d, #008080);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #005656;
+        }
+        .student-info-card {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 15px;
+            display: inline-block;
+            text-align: left;
+        }
+        .album-card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .album-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .album-img {
+            height: 220px;
+            object-fit: cover;
+            width: 100%;
+        }
+        /* Custom Styling for Modal */
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .modal-header {
+            background-color: #1b365d;
+            color: white;
+            border-bottom: none;
+        }
+        .modal-body {
+            background-color: #0d1117;
+            padding: 20px;
+        }
+        #modalImage {
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Student Info -->
+    <header class="header-box text-center">
+        <div class="container">
+            <h1 class="fw-bold mb-3">ALBUM HÌNH ẢNH NÂNG CAO</h1>
+            <div class="student-info-card">
+                <p class="mb-1"><strong>Họ và tên:</strong> Huỳnh Ngọc Hiếu</p>
+                <p class="mb-1"><strong>MSSV:</strong> 241A010537</p>
+                <p class="mb-0"><strong>Email:</strong> hinhgiahieu@gmail.com</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Album Gallery -->
+    <main class="container mb-5">
+        <div class="row g-4">
+            <!-- Ảnh 1: Ảnh cá nhân Huỳnh Ngọc Hiếu -->
+            <div class="col-md-4 col-sm-6">
+                <div class="card album-card">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=600" 
+                         class="album-img" 
+                         alt="Chân dung Huỳnh Ngọc Hiếu"
+                         data-bs-toggle="modal" 
+                         data-bs-target="#imageModal"
+                         data-src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=1200">
+                    <div class="card-body text-center">
+                        <h6 class="card-title fw-bold">Chân dung cá nhân</h6>
+                        <p class="card-text text-muted small">Huỳnh Ngọc Hiếu - MSSV: 241A010537</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ảnh 2: Bình minh biển -->
+            <div class="col-md-4 col-sm-6">
+                <div class="card album-card">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600" 
+                         class="album-img" 
+                         alt="Bình minh trên biển"
+                         data-bs-toggle="modal" 
+                         data-bs-target="#imageModal"
+                         data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200">
+                    <div class="card-body text-center">
+                        <h6 class="card-title fw-bold">Bình minh biển</h6>
+                        <p class="card-text text-muted small">Khung cảnh bình minh rực rỡ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ảnh 3: Phong cảnh núi rừng -->
+            <div class="col-md-4 col-sm-6">
+                <div class="card album-card">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600" 
+                         class="album-img" 
+                         alt="Thiên nhiên hùng vĩ"
+                         data-bs-toggle="modal" 
+                         data-bs-target="#imageModal"
+                         data-src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200">
+                    <div class="card-body text-center">
+                        <h6 class="card-title fw-bold">Thiên nhiên hùng vĩ</h6>
+                        <p class="card-text text-muted small">Dãy núi phủ mây xanh ngắt</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap Modal Xem Ảnh Phóng To -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Xem Ảnh Phóng To</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" class="img-fluid" alt="Ảnh phóng to lớn">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript Xử Lý Sự Kiện Gán Ảnh Cho Modal -->
+    <script>
+        document.querySelectorAll('img[data-bs-toggle="modal"]').forEach(img => {
+            img.addEventListener('click', function() {
+                const src = this.getAttribute('data-src');
+                const title = this.getAttribute('alt');
+                document.getElementById('modalImage').setAttribute('src', src);
+                document.getElementById('imageModalLabel').innerText = title;
+            });
+        });
+    </script>
+</body>
+</html>
